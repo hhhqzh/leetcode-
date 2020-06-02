@@ -12,7 +12,7 @@ public:
         int max = money[0] > money[1] ? money[0] : money[1];
         for(int i=2; i<n; ++i){
             money[i] = 0;
-            for(int j=i-2; j>0; --j){
+            for(int j=i-2; j>=0; --j){
                 if(money[i] < nums[i] + money[j])
                     money[i] = nums[i] + money[j];
             }
