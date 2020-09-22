@@ -17,3 +17,24 @@ public:
         return dp[w];
     }
 };
+
+//dfs
+class Solution {
+public:
+    int count = 0;
+    
+    int findTargetSumWays(vector<int>& nums, int S) {
+        dfs(0, 0, nums, S);
+        return count;
+    }
+
+    void dfs(int sum, int index, vector<int>& nums, int target){
+        if(nums.size() == index){
+            if(sum == target)
+                ++count;
+            return;
+        }
+        dfs(sum + nums[index], index + 1, nums, target);
+        dfs(sum - nums[index], index + 1, nums, target);
+    }
+};
