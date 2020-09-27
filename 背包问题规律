@@ -2,7 +2,7 @@
 
 常见的背包问题有1、组合问题。2、True、False问题。3、最大最小问题。
 以下题目整理来自大神CyC，github地址：
-github
+https://github.com/CyC2018/CS-Notes/blob/master/notes/Leetcode%20%E9%A2%98%E8%A7%A3%20-%20%E7%9B%AE%E5%BD%95.md
 我在大神整理的基础上，又做了细分的整理。分为三类。
 1、组合问题：
 377. 组合总和 Ⅳ
