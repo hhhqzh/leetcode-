@@ -1,5 +1,6 @@
 // 用正常去遍历会超时
-// 使用 "厄拉多塞筛法" 
+// 使用 "厄拉多塞筛法"
+//  0,1不是质数，2是质数把2的所有倍数全部划掉、3是第二个质数把3的倍数划掉
 class Solution {
     public int countPrimes(int n) {
         // true为合数，false为质数
