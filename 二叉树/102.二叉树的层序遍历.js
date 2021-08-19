@@ -31,6 +31,7 @@
     return res;
 };
 
+// 使用lastNode来判断当前层是否遍历结束
 var levelOrder = function (root) {
     if (root === null)
         return [];
