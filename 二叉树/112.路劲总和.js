@@ -8,23 +8,24 @@
  */
 /**
  * @param {TreeNode} root
+ * @param {number} targetSum
  * @return {boolean}
  */
- var isBalanced = function(root) {
+ var hasPathSum = function(root, targetSum) {
+    let sum = 0;
 
-    const dfs = (root) => {
+    const helper = (root, targetSum) => {
         if (root == null)
-            return 0;
-        if (root.left == null && root.right == null)
-            return 1;
-        let lHeight = dfs(root.left);
-        let rHeight = dfs(root.right);
-        if (lHeight == -1 || rHeight == -1)
-            return -1;
-        if (Math.abs(lHeight - rHeight) > 1) 
-            return -1;
-        return Math.max(lHeight, rHeight) + 1;
+            return false;
+        sum += root.val;
+        if (root.left == null && root.right == null && sum == targetSum) {
+            return true;
+        }
+        if (helper(root.left, targetSum) || helper(root.right, targetSum))
+            return true;
+        sum -= root.val;
+        return false;
     }
 
-    return dfs(root) != -1;
+    return helper(root, targetSum);
 };
