@@ -38,7 +38,7 @@
     while (curLeftMost.left != null) {
         let head = curLeftMost;
         while (head != null) {
-            head.left.next = head.right;
+            head.left.next = head.right; 
             if (head.next != null) {
                 head.right.next = head.next.left;
             }
