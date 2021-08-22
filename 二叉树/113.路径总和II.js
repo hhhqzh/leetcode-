@@ -18,7 +18,7 @@
 
     const helper = (root, targetSum) => {
         if (root == null)
-            return;
+            return; 
         sum += root.val;
         arr.push(root.val);
         if (root.left == null && root.right == null && sum == targetSum) {
