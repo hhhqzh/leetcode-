@@ -11,14 +11,14 @@
  * @return {number}
  */
  var maxPathSum = function(root) {
-    let res = Number.MIN_VALUE;
+    let res = Number.MIN_SAFE_INTEGER;
 
     const dfs = (root) => {
         if (root == null)
             return 0;
         let left = Math.max(0, dfs(root.left));
         let right = Math.max(0, dfs(root.right));
-        res = Math.max(res, left + right +root.val);
+        res = Math.max(res, left + right + root.val);
         return root.val + Math.max(left, right);
     }
 
