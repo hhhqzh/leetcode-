@@ -1,24 +1,27 @@
 /**
  * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
  * }
  */
 /**
  * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
  * @return {TreeNode}
  */
- var invertTree = function(root) {
-    if (root == null)
+ var lowestCommonAncestor = function(root, p, q) {
+    if (root == null || root == p || root == q)
+        return root;
+    let left = lowestCommonAncestor(root.left, p, q);
+    let right = lowestCommonAncestor(root.right, p, q);
+    if (left && right)
+        return root;
+    else if (left)
+        return left;
+    else if (right)
+        return right;
+    else
         return null;
-    let t = root.left;
-    root.left = root.right;
-    root.right = t;
-
-    invertTree(root.left);
-    invertTree(root.right);
-
-    return root;
 };
