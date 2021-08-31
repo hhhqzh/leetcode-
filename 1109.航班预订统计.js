@@ -12,7 +12,7 @@
     //     }
     // }
 
-    // 差分数组 + 前缀和
+    // 差分数组（差分数组的第i个数即为原数组第i个数与第i-1个数的差值） + 前缀和
     for (const booking of bookings) {
         res[booking[0] - 1] += booking[2];
         if (booking[1] < n)
