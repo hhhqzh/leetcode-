@@ -12,6 +12,7 @@
  * @param {TreeNode} root
  * @return {string}
  */
+// 注意！！二叉搜索树，前序序列就能建树
  var serialize = function(root) {
     let data = [];
     const preorder = (root) => {
