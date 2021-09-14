@@ -28,5 +28,5 @@
         return node;
     };
 
-    return creatTree(preorder, 0, preorder.length - 1, inorder, 0, inorder.length);
+    return creatTree(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
 };
