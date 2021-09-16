@@ -28,37 +28,20 @@ var findSecondMinimumValue = function(root) {
 };
 
 var findSecondMinimumValue = function (root) {
-    if (!root.left && !root.right)
-        return -1;
-
     const getMin = (root, val) => {
-        if (!root.left && !root.right) {
-            return root.val === val ? -1 : root.val;
-        }
+        if (!root)
+            return -1;
         if (root.val !== val)
             return root.val;
         if (root.val === val) {
             let l = getMin(root.right, val);
             let r = getMin(root.left, val);
-            if (l === -1 && r === -1)
-                return -1;
-            else if (l === -1 && r !== -1)
-                return r;
-            else if (l !== -1 && r === -1)
-                return l;
-            else
+            if (l > val && r > val)
                 return Math.min(l, r);
+            else
+                return Math.max(l, r);
         }
     }
 
-    let l = getMin(root.left, root.val);
-    let r = getMin(root.right, root.val);
-    if (l === -1 && r === -1)
-        return -1;
-    else if (l === -1 && r !== -1)
-        return r;
-    else if (l !== -1 && r === -1)
-        return l;
-    else
-        return Math.min(l, r);
+    return getMin(root, root.val);
 };
