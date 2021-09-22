@@ -12,22 +12,11 @@
  */
  var pruneTree = function (root) {
 
-    const dfs = (root) => {
-        if (root === null)
-            return false;
-        let l = dfs(root.left);
-        let r = dfs(root.right);
-        if (l === false && r === false && root.val === 0)
-            return false;
-        if (l === false)
-            root.left = null;
-        if (r === false)
-            root.right = null;
-        return true;
-    }
-
-    if (dfs(root))
-        return root;
-    else
+    if (root === null)
         return null;
+    root.left = pruneTree(root.left);
+    root.right = pruneTree(root.right);
+    if (root.left === null && root.right === null && root.val === 0)
+        return null;
+    return root;
 };
