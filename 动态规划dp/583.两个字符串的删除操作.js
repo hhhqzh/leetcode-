@@ -7,7 +7,7 @@
  var minDistance = function (word1, word2) {
     let n1 = word1.length, n2 = word2.length;
 
-    const dp = new Array(word1.length + 1).fill(0).map(() => new Array(word2.length + 1).fill(0))
+    const dp = new Array(n1 + 1).fill(0).map(() => new Array(n2 + 1).fill(0))
     for (let i = 0; i <= n1; ++i)
         dp[i][0] = i;
     for (let i = 0; i <= n2; ++i)
