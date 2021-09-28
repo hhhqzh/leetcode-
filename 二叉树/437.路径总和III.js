@@ -18,8 +18,8 @@
         if (root === null)
             return;
         Sum(root, 0);
-        dfs(root.left, targetSum);
-        dfs(root.right, targetSum);
+        dfs(root.left);
+        dfs(root.right);
     }
 
     const Sum = (root, sum) => {
