@@ -13,17 +13,24 @@
     let ans = (ax2 - ax1) * (ay2 - ay1) + (bx2 - bx1) * (by2 - by1);
     if (ax2 <= bx1 || bx2 <= ax1 || ay1 >= by2 || by1 >= ay2)
         return ans;
-    let [x, y] = [0, 0];
-    if (ay2 >= by2 && ay1 >= by1 || by2 >= ay2 && by1 >= ay1) {
-        y = Math.min(by2 - ay1, ay2 - by1);
-    } else if (ay2 >= by2 && ay1 <= by1 || by2 >= ay2 && by1 <= ay1) {
-        y = Math.min(by2 - by1, ay2 - ay1);
-    }
+    // let [x, y] = [0, 0];
+    // if (ay2 >= by2 && ay1 >= by1 || by2 >= ay2 && by1 >= ay1) {
+    //     y = Math.min(by2 - ay1, ay2 - by1);
+    // } else if (ay2 >= by2 && ay1 <= by1 || by2 >= ay2 && by1 <= ay1) {
+    //     y = Math.min(by2 - by1, ay2 - ay1);
+    // }
 
-    if (bx2 >= ax2 && bx1 >= ax1 || ax2 >= bx2 && ax1 >= bx1) {
-        x = Math.min(ax2 - bx1, bx2 - ax1);
-    } else if (ax2 >= bx2 && ax1 <= bx1 || bx2 >= ax2 && bx1 <= ax1) {
-        x = Math.min(bx2 - bx1, ax2 - ax1);
-    }
-    return ans - x * y;
+    // if (bx2 >= ax2 && bx1 >= ax1 || ax2 >= bx2 && ax1 >= bx1) {
+    //     x = Math.min(ax2 - bx1, bx2 - ax1);
+    // } else if (ax2 >= bx2 && ax1 <= bx1 || bx2 >= ax2 && bx1 <= ax1) {
+    //     x = Math.min(bx2 - bx1, ax2 - ax1);
+    // }
+    // return ans - x * y;
+
+    let x1 = Math.max(ax1, bx1);
+    let x2 = Math.min(ax2, bx2);
+
+    let y1 = Math.max(ay1, by1);
+    let y2 = Math.min(ay2, by2);
+    return ans - (x2 - x1) * (y2 - y1);
 };
