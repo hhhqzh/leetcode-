@@ -24,10 +24,10 @@ var distributeCoins = function (root) {
     const postOrder = (root) => {
         if (root === null)
             return 0;
-        root.val += postOrder(root.left);
-        root.val += postOrder(root.right);
-        res += Math.abs(root.val - 1);
-        return root.val - 1;
+        let l = postOrder(root.left);
+        let r = postOrder(root.right);
+        res += Math.abs(l) + Math.abs(r);
+        return root.val + l + r - 1;
     }
 
     postOrder(root);
