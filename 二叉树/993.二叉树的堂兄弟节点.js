@@ -38,7 +38,7 @@
 // dfs 
 
 var isCousins = function (root, x, y) {
-    let xpar, xhei, ypar, yhei;
+    let xpar, xhei, xFound, ypar, yhei, yFound;
 
     const dfs = (root, x, y, height, parent) => {
         if (root === null)
@@ -46,11 +46,17 @@ var isCousins = function (root, x, y) {
         if (root.val === x) {
             xpar = parent;
             xhei = height;
+            xFound = true;
         } else if (root.val === y) {
             ypar = parent;
             yhei = height;
+            yFound = true;
         } else {
+            if (xFound && yFound)
+                return;
             dfs(root.left, x, y, height + 1, root);
+            if (xFound && yFound)
+                return;
             dfs(root.right, x, y, height + 1, root);
         }
     }
