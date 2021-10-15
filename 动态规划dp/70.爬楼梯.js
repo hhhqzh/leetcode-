@@ -11,3 +11,15 @@
     }
     return dp[n];
 };
+
+var climbStairs = function (n) {
+    if (n <= 2)
+        return n;
+    let a = 1, b = 2;
+    for (let i = 3; i <= n; ++i) {
+        let t = a + b;
+        a = b;
+        b = t;
+    }
+    return b;
+};
