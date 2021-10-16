@@ -2,27 +2,24 @@
  * @param {number} label
  * @return {number[]}
  */
-var pathInZigZagTree = function (label) {
-    var n = 0;
-    var t = label;
-    var res = [];
+ var pathInZigZagTree = function (label) {
+    let height = 0;
+    let t = label;
     while (t) {
-        ++n;
+        ++height;
         t = Math.floor(t / 2);
     }
-    var flag = true;
-    while (label != 1) {
+    let res = [];
+    let flag = true;
+    while (label) {
         if (flag) {
             res.push(label);
-            flag = false;
         } else {
-            sum = Math.pow(2, n - 1) + (Math.pow(2, n) - label - 1);
-            res.push(sum);
-            flag = true;
+            res.push(Math.pow(2, height - 1) + Math.pow(2, height) - 1 - label);
         }
+        flag = !flag;
         label = Math.floor(label / 2);
-        --n;
+        --height;
     }
-    res.push(1);
-    return res.sort((a, b) => {return a - b;});
+    return res.reverse();
 };
