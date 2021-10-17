@@ -11,7 +11,7 @@
  * @param {number} k
  * @return {number}
  */
- var kthSmallest = function(root, k) {
+var kthSmallest = function (root, k) {
 
     const getCount = (root) => {
         if (root == null)
@@ -31,3 +31,23 @@
         }
     }
 };
+
+var kthSmallest = function (root, k) {
+    let count = 0;
+    let res;
+
+    const inorder = (root) => {
+        if (root === null)
+            return;
+        inorder(root.left);
+        ++count;
+        if (count === k) {
+            res = root.val;
+            return;
+        }
+        inorder(root.right);
+    }
+
+    inorder(root)
+    return res;
+}
