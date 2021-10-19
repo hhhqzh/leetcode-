@@ -25,19 +25,8 @@ Trie.prototype.insert = function (word) {
  * @return {boolean}
  */
 Trie.prototype.search = function (word) {
-    const dfs = (index, node) => {
-        if (index === word.length) {
-            return node.isEnd;
-        }
-        const ch = word.charAt(index);
-        const i = ch.charCodeAt() - 'a'.charCodeAt();
-        const child = node.children[i];
-        if (child && dfs(index + 1, child))
-            return true;
-        return false;
-    };
-
-    return dfs(0, this);
+    let node = this.startsWith(word);
+    return node && node.isEnd;
 };
 
 /** 
@@ -45,19 +34,15 @@ Trie.prototype.search = function (word) {
  * @return {boolean}
  */
 Trie.prototype.startsWith = function (prefix) {
-    const dfs = (index, node) => {
-        if (index === prefix.length) {
-            return true;
+    let node = this;
+    for (const ch of prefix) {
+        let index = ch.charCodeAt() - 'a'.charCodeAt();
+        if (node.children[index] === null) {
+            return false;
         }
-        const ch = prefix.charAt(index);
-        const i = ch.charCodeAt() - 'a'.charCodeAt();
-        const child = node.children[i];
-        if (child && dfs(index + 1, child))
-            return true;
-        return false;
-    };
-
-    return dfs(0, this);
+        node = node.children[index];
+    }
+    return node;
 };
 
 /**
