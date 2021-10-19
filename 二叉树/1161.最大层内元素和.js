@@ -30,8 +30,6 @@ var maxLevelSum = function (root) {
         if (s > sum) {
             sum = s;
             res = level;
-        } else if (s === sum) {
-            res = Math.min(res, level);
         }
     }
     return res;
