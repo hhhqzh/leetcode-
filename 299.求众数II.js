@@ -10,7 +10,7 @@ var majorityElement = function (nums) {
         cx = 0,
         cy = 0;
     for (let i = 0; i < nums.length; ++i) {
-        if ((cx === 0 || nums[i] === x) && nums[i] !== y) {
+        if (cx === 0 && nums[i] !== y || nums[i] === x) {
             ++cx;
             x = nums[i];
         } else if (cy === 0 || nums[i] === y) {
