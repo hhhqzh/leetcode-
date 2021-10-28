@@ -25,4 +25,4 @@ var maxProfit = function (prices, fee) {
         buy = Math.max(buy, b);
     }
     return sell;
-};
+}; 
