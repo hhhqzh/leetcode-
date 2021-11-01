@@ -12,13 +12,14 @@ var numberOfArithmeticSlices = function (nums) {
     for (let i = 2; i < n; ++i) {
         if (nums[i] - nums[i - 1] === nums[i - 1] - nums[i - 2]) {
             dp[i] = dp[i - 1] + 1;
+            total += dp[i];
         }
-        total += dp[i];
     }
 
     return total;
 };
 
+// dp空间优化
 var numberOfArithmeticSlices = function (nums) {
     let total = 0,
         add = 0;
