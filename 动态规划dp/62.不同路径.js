@@ -15,6 +15,19 @@ var uniquePaths = function (m, n) {
     return dp[m - 1][n - 1];
 };
 
+// 一维空间优化
+var uniquePaths = function (m, n) {
+    let dp = new Array(n).fill(0);
+    dp[0] = 1;
+    for (let i = 0; i < m; ++i) {
+        for (let j = 0; j < n; ++j) {
+            if (j - 1 >= 0)
+                dp[j] += dp[j - 1];
+        }
+    }
+    return dp[n - 1];
+}
+
 // 回溯超时！！
 var uniquePaths = function (m, n) {
     let res = 0;
