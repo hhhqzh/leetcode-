@@ -61,3 +61,35 @@ var countPairs = function (root, distance) {
     }
     return res;
 };
+
+// 后续遍历，dfs 返回当前节点所有距离小于等于 distance 的叶子节点的距离
+var countPairs = function (root, distance) {
+    let res = 0;
+
+    const dfs = (root) => {
+        if (root === null)
+            return [];
+        if (root.left === null && root.right === null)
+            return [0];
+        let ret = [];
+        let left = dfs(root.left);
+        for (let l of left) {
+            if (l + 1 <= distance)
+                ret.push(l + 1);
+        }
+        let right = dfs(root.right);
+        for (let r of right) {
+            if (r + 1 <= distance)
+                ret.push(r + 1);
+        }
+        for (let l of left) {
+            for (let r of right) {
+                res += ((l + r + 2) <= distance);
+            }
+        }
+        return ret;
+    }
+
+    dfs(root);
+    return res;
+};
