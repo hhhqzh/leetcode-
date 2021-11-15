@@ -1,46 +1,69 @@
-// 自己写的dp
-class Solution {
-    public int wiggleMaxLength(int[] nums) {
-        if(nums.length < 2)
-            return nums.length;
-        int n = nums.length;
-        int[] positive = new int[n];
-        int[] negative = new int[n];
-        for(int i = 0; i < n; ++i){
-            positive[i] = 1;
-            negative[i] = 1;
-        }
-        int maxp = 1, maxn = 1;
-        for(int i = 1; i < n; ++i){
-            if(nums[i] - nums[i - 1] > 0){
-                positive[i] = maxn + 1;
-                maxp = Math.max(maxp, positive[i]);
-            } else if(nums[i] - nums[i - 1] < 0){
-                negative[i] = maxp + 1;
-                maxn = Math.max(maxn, negative[i]);
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var wiggleMaxLength = function (nums) {
+    let n = nums.length;
+    if (n <= 2)
+        return true;
+    /* 
+        dp[i] 表示以 nums[i] 为结尾的最大摆动序列长度
+        但是摆动序列可能前一个差值是负数，也可能是正数，所以需两个 dp
+    */
+    let positive = new Array(n).fill(1);
+    let negative = new Array(n).fill(1);
+    let maxp = 1,
+        maxn = 1;
+    for (let i = 0; i < n; ++i) {
+        for (let j = 0; j < i; ++j) {
+            if (nums[i] > nums[j]) {
+                positive[i] = Math.max(positive[i], negative[j] + 1);
+                maxp = Math.max(positive[i], maxp);
+            } else if (nums[i] < nums[j]) {
+                negative[i] = Math.max(negative[i], positive[j] + 1);
+                maxn = Math.max(negative[i], maxn);
             }
         }
-        return Math.max(maxp, maxn);
     }
-}
+    return Math.max(maxp, maxn);
+};
 
-// 评论区大神的解
-class Solution {
-    public int wiggleMaxLength(int[] nums) {
-        int n = nums.length;
-        if (n < 2) {
-            return n;
+var wiggleMaxLength = function (nums) {
+    let n = nums.length;
+    if (n <= 2)
+        return true;
+    /* 
+        dp[i] 表示以 nums[i] 为结尾的最大摆动序列长度
+        但是摆动序列可能前一个差值是负数，也可能是正数，所以需两个 dp
+    */
+    let positive = new Array(n).fill(1);
+    let negative = new Array(n).fill(1);
+    let maxp = 1,
+        maxn = 1;
+    for (let i = 0; i < n; ++i) {
+        if (nums[i] > nums[i - 1]) {
+            positive[i] = maxn + 1;
+            maxp = Math.max(positive[i], maxp);
+        } else if (nums[i] < nums[i - 1]) {
+            negative[i] = maxp + 1;
+            maxn = Math.max(negative[i], maxn);
         }
-        int up = 1;
-        int down = 1;
-        for (int i = 1; i < n; i++) {
-            if (nums[i] > nums[i - 1]) {
-                up = down + 1;
-            }
-            if (nums[i] < nums[i - 1]) {
-                down = up + 1;
-            }
-        }
-        return Math.max(up, down);
     }
-}
+    return Math.max(maxp, maxn);
+};
+
+var wiggleMaxLength = function (nums) {
+    let n = nums.length;
+    if (n <= 2)
+        return true;
+    let maxp = 1,
+        maxn = 1;
+    for (let i = 0; i < n; ++i) {
+        if (nums[i] > nums[i - 1]) {
+            maxp = Math.max(maxn + 1, maxp);
+        } else if (nums[i] < nums[i - 1]) {
+            maxn = Math.max(maxp + 1, maxn);
+        }
+    }
+    return Math.max(maxp, maxn);
+};
