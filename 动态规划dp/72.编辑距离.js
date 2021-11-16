@@ -8,29 +8,21 @@
  *      D[i][j]=1+min(D[i][j−1],D[i−1][j],D[i−1][j−1])
  */
 
-
-class Solution {
-    public int minDistance(String word1, String word2) {
-        if(word1 == null || word2 == null)
-            return 0;
-        int m = word1.length(), n = word2.length();
-        int [][]dp = new int[m + 1][n + 1];
-        for(int i = 0; i <= m; ++i){
-            for(int j = 0; j <= n; ++j){
-                // 边界状态
-                if(i == 0)
-                    dp[i][j] = j;
-                // 边界状态
-                else if(j == 0)
-                    dp[i][j] = i;
-                else {
-                    if(word1.charAt(i - 1) == word2.charAt(j - 1))
-                        dp[i][j] = dp[i - 1][j - 1];
-                    else
-                        dp[i][j] = Math.min(dp[i - 1][j - 1], Math.min(dp[i - 1][j], dp[i][j - 1])) + 1;
-                }
-            }
+/**
+ * @param {string} text1
+ * @param {string} text2
+ * @return {number}
+ */
+var longestCommonSubsequence = function (text1, text2) {
+    let [n1, n2] = [text1.length, text2.length];
+    const dp = new Array(n1 + 1).fill(0).map(() => new Array(n2 + 1).fill(0))
+    for (let i = 1; i <= n1; ++i) {
+        for (let j = 1; j <= n2; ++j) {
+            if (text1.charAt(i - 1) === text2.charAt(j - 1))
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            else
+                dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
         }
-        return dp[m][n];
     }
-}
+    return dp[n1][n2];
+};
