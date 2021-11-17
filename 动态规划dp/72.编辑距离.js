@@ -6,6 +6,7 @@
 var minDistance = function (word1, word2) {
     let m = word1.length,
         n = word2.length;
+    // dp[i][j]表示word1的前i个字母转换成word2的前j个字母所使用的最少操作。 
     let dp = new Array(m + 1).fill(0).map(() => {
         return new Array(n + 1).fill(Number.MAX_SAFE_INTEGER)
     });
