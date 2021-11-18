@@ -28,6 +28,25 @@ var coinChange = function (coins, amount) {
     return dp[n - 1][amount] === Number.MAX_SAFE_INTEGER ? -1 : dp[n - 1][amount];
 };
 
+// 完全背包
+// 一维化
+var coinChange = function (coins, amount) {
+    let n = coins.length;
+    let dp = new Array(amount + 1).fill(Number.MAX_SAFE_INTEGER);
+    for (let i = 0; i <= amount; ++i) {
+        if (i % coins[0] === 0)
+            dp[i] = i / coins[0];
+    }
+    for (let coin of coins) {
+        for (let i = amount; i >= coin; --i) {
+            // 使用硬币 cois[i] 的个数
+            for (let k = 0; k * coin <= i; ++k) {
+                dp[i] = Math.min(dp[i], dp[i - k * coin] + k);
+            }
+        }
+    }
+    return dp[amount] === Number.MAX_SAFE_INTEGER ? -1 : dp[amount];
+}
 
 // dp[i] = min(dp[i],dp[i-coin]+1)
 //如果i-coin存在的话.
@@ -43,5 +62,5 @@ var coinChange = function (coins, amount) {
             }
         }
     }
-    return dp[amount] === Number.MAX_SAFE_INTEGER ? -1: dp[amount];
+    return dp[amount] === Number.MAX_SAFE_INTEGER ? -1 : dp[amount];
 }
