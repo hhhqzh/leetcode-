@@ -36,13 +36,13 @@ var integerReplacement = function (n) {
     return dp[n];
 };
 
-// 位运算
+// 位运算 贪心
 var integerReplacement = function (n) {
     let ans = 0;
     while (n !== 1) {
         if (n % 2 == 0) {
-            // 偶数的话，直接右n
-            n >>= 1;
+            // 偶数的话，直接除2
+            n /= 2;
         } else {
             // 奇数的话，要看最低位是否有连续的 1，若有连续的 1，则 +1 可以消除连续的 1，否则 -1 消除最后一个 1。
             // 注意 3 是特殊情况
