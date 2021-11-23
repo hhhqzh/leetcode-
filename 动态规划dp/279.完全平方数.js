@@ -41,35 +41,29 @@ var numSquares = function (n) {
     }
     return dp[n];
 };
+
 // BFS
 // 可以将每个整数看成图中的一个节点，如果两个整数之差为一个平方数，那么这两个整数所在的节点就有一条边。
 // 要求解最小的平方数数量，就是求解从节点 n 到节点 0 的最短路径。
-class Solution {
-    public:
-        int numSquares(int n) {
-            // BFS
-            queue < int > q;
-            int * marked = new int[n + 1];
-            q.push(n);
-            marked[n] = 1;
-            int level = 0;
-            while (!q.empty()) {
-                ++level;
-                int size = q.size();
-                while (size-- > 0) {
-                    int current = q.front();
-                    q.pop();
-                    for (int i = 1; i * i <= current; ++i) {
-                        int next = current - i * i;
-                        if (next == 0)
-                            return level;
-                        if (marked[next] == 1)
-                            continue;
-                        marked[next] = 1;
-                        q.push(next);
-                    }
-                }
+var numSquares = function (n) {
+    let queue = [n];
+    let set = new Set();
+    let level = 0;
+    while (queue.length) {
+        ++level;
+        let size = queue.length;
+        while (size--) {
+            let cur = queue.shift();
+            for (let i = 1; i * i <= cur; ++i) {
+                let t = cur - i * i;
+                if (t === 0)
+                    return level;
+                if (set.has(t))
+                    continue;
+                set.add(t);
+                queue.push(t);
             }
-            return level;
         }
+    }
+    return level;
 };
