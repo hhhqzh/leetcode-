@@ -12,9 +12,9 @@ var canFinish = function (numCourses, prerequisites) {
     for (let prerequisite of prerequisites) {
         set.add(prerequisite[0]);
         set.add(prerequisite[1]);
-        map.set(prerequisite[1], map.has(prerequisite[1]) ? map.get(prerequisite[1]) + 1 : 1);
-        if (!map.has(prerequisite[0]))
-            map.set(prerequisite[0], 0);
+        map.set(prerequisite[0], map.has(prerequisite[0]) ? map.get(prerequisite[0]) + 1 : 1);
+        if (!map.has(prerequisite[1]))
+            map.set(prerequisite[1], 0);
     }
     // 保存入度为 0 的课程
     let arr = new Array();
@@ -29,12 +29,12 @@ var canFinish = function (numCourses, prerequisites) {
     while (arr.length > 0 && numCourses > 0) {
         let course = arr[0];
         for (let prerequisite of prerequisites) {
-            if (prerequisite[0] === course) {
-                let cnt = map.get(prerequisite[1]);
-                map.set(prerequisite[1], cnt - 1);
+            if (prerequisite[1] === course) {
+                let cnt = map.get(prerequisite[0]);
+                map.set(prerequisite[0], cnt - 1);
                 // 把入度为 0 的课程加入数组 arr
                 if (cnt - 1 === 0) {
-                    arr.push(prerequisite[1]);
+                    arr.push(prerequisite[0]);
                     ++count;
                 }
             }
