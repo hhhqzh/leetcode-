@@ -29,3 +29,12 @@ var countBits = function (n) {
     }
     return res;
 };
+
+var countBits = function (n) {
+    let res = new Array(n + 1).fill(0);
+    // i >> 1 会把最低位去掉，当 i 的最低位是 0，则 i 中 1 的个数与 i >> 1 相同；若是 1， 则比 i >> 1 的个数多 1
+    for (let i = 1; i <= n; ++i) {
+        res[i] = res[i >> 1] + (i & 1);
+    }
+    return res;
+};
