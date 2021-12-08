@@ -61,6 +61,7 @@ var maxSumOfThreeSubarrays = function (nums, k) {
 };
 
 // 滑动窗口
+// 先后计算一个子数组最优解，在一个子数组最优解的情况下推算两个子数组最优解，类似推算到三个子数组
 var maxSumOfThreeSubarrays = function (nums, k) {
     const ans = [0, 0, 0];
     // maxSum1 维护第二个窗口之前的最大值，maxSum1Idx 对应第一个窗口最大值的下标
