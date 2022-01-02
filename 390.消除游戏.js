@@ -42,3 +42,25 @@ var lastRemaining = function (n) {
     }
     return res;
 };
+
+
+var lastRemaining = function (n) {
+    let a1 = 1,
+        an = n; // 每一轮的第一个数和最后一个数
+    let k = 0,
+        cnt = n,
+        step = 1; // k为第几轮，cnt为剩余数，step为每次删除走的步数
+    while (cnt > 1) {
+        if (k % 2 === 0) { // 从左往右
+            a1 = a1 + step;
+            an = cnt % 2 === 0 ? an : an - step;
+        } else { // 从右往左 
+            a1 = cnt % 2 === 0 ? a1 : a1 + step;
+            an = an - step;
+        }
+        ++k;
+        step *= 2;
+        cnt = Math.floor(cnt / 2);
+    }
+    return a1;
+}
