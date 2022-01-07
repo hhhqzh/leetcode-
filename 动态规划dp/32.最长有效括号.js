@@ -6,7 +6,7 @@
  * 用栈模拟一遍，将所有无法匹配的括号的位置全部置1
  * 然后找最长连续 0 的长度
  */
-var longestValidParentheses = function (s) {
+ var longestValidParentheses = function (s) {
     let stack = [];
     let mark = new Array(s.length).fill(0);
     for (let i = 0; i < s.length; ++i) {
