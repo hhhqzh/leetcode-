@@ -2,6 +2,7 @@
  * @param {string} num
  * @return {boolean}
  */
+// 累加数只由第一第二个数决定
 // 非递归，枚举前两个数，计算这两个数组成的完整字符串，与 num 判断是否相等
 var isAdditiveNumber = function (num) {
     const check = (a, b) => {
