@@ -20,12 +20,12 @@ var increasingTriplet = function (nums) {
     let a = Number.MAX_SAFE_INTEGER,
         b = Number.MAX_SAFE_INTEGER;
     for (let num of nums) {
-        if (num <= a) {
-            a = num;
-        } else if (num <= b) {
-            b = num;
-        } else {
+        if (num > b) {
             return true;
+        } else if (num < b && num > a) {
+            b = num;
+        } else if (num < a) {
+            a = num;
         }
     }
     return false;
