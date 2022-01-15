@@ -4,7 +4,8 @@
  * @param {number} k
  * @return {number[][]}
  */
- var kSmallestPairs = function (nums1, nums2, k) {
+// 多路归并
+var kSmallestPairs = function (nums1, nums2, k) {
     if (k > nums1.length * nums2.length) {
         k = nums1.length * nums2.length
     }
