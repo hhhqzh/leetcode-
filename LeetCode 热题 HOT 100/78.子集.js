@@ -6,20 +6,26 @@
 var subsets = function (nums) {
     let res = [];
     let temp = [];
-    const dfs = (i, n) => {
+
+    // i 开始下标，n 子数组长度，len 剩余所需数字个数
+    const dfs = (i, n, len) => {
+        if (nums.length - i < len)
+            return;
         if (temp.length === n) {
             res.push([].concat(temp));
             return;
         }
         for (let j = i; j < nums.length; ++j) {
             temp.push(nums[j]);
-            dfs(j + 1, n);
+            dfs(j + 1, n, len - 1);
             temp.pop();
         }
     }
+
     for (let i = 0; i <= nums.length; ++i) {
-        dfs(0, i);
+        dfs(0, i, i);
     }
+    
     return res;
 };
 
