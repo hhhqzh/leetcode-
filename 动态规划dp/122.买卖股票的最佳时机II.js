@@ -30,6 +30,7 @@ var maxProfit = function (prices) {
     let n = prices.length;
     if (n === 0)
         return 0;
+    // dp[i][0] 表示第i天卖掉时能获得最大的值，dp[i][1] 表示第i天买入时能获得的最大值
     let dp = new Array(n).fill(0).map(() => {
         return new Array(2).fill(0)
     });
