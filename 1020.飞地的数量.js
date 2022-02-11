@@ -2,7 +2,7 @@
  * @param {number[][]} grid
  * @return {number}
  */
-// dfs 超时
+// dfs 用总的1减去能到达边界的1，超时
 var numEnclaves = function (grid) {
     let m = grid.length,
         n = grid[0].length;
@@ -72,7 +72,7 @@ var numEnclaves = function (grid) {
     }
 
     let total = 0;
-    
+
     for (let i = 0; i < m; ++i) {
         for (let j = 0; j < n; ++j) {
             if ((i == 0 || i === m - 1 || j === 0 || j === n - 1) && grid[i][j] === 1) {
