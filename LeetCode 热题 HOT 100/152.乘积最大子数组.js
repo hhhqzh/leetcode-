@@ -21,6 +21,7 @@ var maxProduct = function (nums) {
     return max;
 };
 
+// 优化
 var maxProduct = function (nums) {
     let preMax, max, preMin;
     preMax = max = preMin = nums[0];
