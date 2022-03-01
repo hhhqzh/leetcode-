@@ -3,19 +3,23 @@
  * @param {number} k
  * @return {number}
  */
-// 不能用滑动窗口，因为 nums 的元素可能为负数，即右指针向右移不能保证区间和一定是增大，左指针向左移也不能保证区间和一定是减小
 var subarraySum = function (nums, k) {
-    // 用 map 保存每个 sum 的次数
+    // map 保存每个前缀和的次数
     let map = new Map();
-    let sum = 0,
+    let prefixSum = 0,
         res = 0;
+    // 注意
     map.set(0, 1);
-    for (let num of nums) {
-        sum += num;
-        if (map.has(sum - k)) {
-            res += map.get(sum - k);
+    for (let i = 0; i < nums.length; ++i) {
+        prefixSum += nums[i];
+        // 若有前缀和为 prefixSum - k
+        if (map.has(prefixSum - k)) {
+            res += map.get(prefixSum - k);
         }
-        map.set(sum, map.has(sum) ? map.get(sum) + 1 : 1);
+        if (!map.has(prefixSum)) {
+            map.set(prefixSum, 0);
+        }
+        map.set(prefixSum, map.get(prefixSum) + 1);
     }
     return res;
 };
