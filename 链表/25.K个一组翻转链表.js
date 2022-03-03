@@ -27,7 +27,7 @@ var reverseKGroup = function (head, k) {
         }
         nextHead = p.next;
         // 翻转局部链表
-        p = preHead.nexta;
+        p = preHead.next;
         let s = nextHead,
             temp = p;
         while (p !== null && p !== nextHead) {
