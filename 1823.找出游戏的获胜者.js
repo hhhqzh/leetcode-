@@ -4,6 +4,7 @@
  * @return {number}
  */
 
+// 链表
 class Node {
     constructor(val, next = null) {
         this.val = val;
@@ -32,4 +33,19 @@ var findTheWinner = function (n, k) {
         }
     }
     return pre.val;
+};
+
+// 队列
+var findTheWinner = function (n, k) {
+    let arr = [];
+    for (let i = 1; i <= n; ++i) {
+        arr.push(i);
+    }
+    while (arr.length > 1) {
+        for (let i = 1; i < k; ++i) {
+            arr.push(arr.shift());
+        }
+        arr.shift();
+    }
+    return arr[0];
 };
